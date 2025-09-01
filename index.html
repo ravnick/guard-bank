@@ -8,12 +8,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
-
+ 
 <body>
     <!-- Splash Screen -->
     <div id="splashScreen" class="splash-screen">
         <div class="splash-logo">
-            <i class="fas fa-money-bill-wave"></i>
+            <!-- <i class="fas fa-money-bill-wave"></i> -->
+            <img src="rv.jpg" alt="" id="image-logo">
         </div>
         <h1>Money Guard</h1>
         <p>Your Personal Expense & Income Tracker</p>
@@ -90,7 +91,7 @@
         </div>
 
         <!-- Forgot Password Screen -->
-        <div id="forgotPasswordScreen" class="screen">
+        <div id="forgotPasswordScreen" class="screen"> 
             <div class="form-container">
                 <h2>Reset Password</h2>
                 <form id="forgotPasswordForm">
@@ -365,14 +366,16 @@
     <div class="alert" id="customAlert"></div>
 
     <!-- Audio Elements -->
-    <audio id="backgroundSound" loop>
-        <source src="https://assets.mixkit.co/music/preview/mixkit-tech-house-vibes-130.mp3" type="audio/mpeg">
+    <audio id="backgroundSound" >
+        <source src="game.mp3" type="audio/mpeg">
+        <!-- <source src="https://assets.mixkit.co/music/preview/mixkit-tech-house-vibes-130.mp3" type="audio/mpeg"> -->
     </audio>
     <audio id="welcomeSound">
-        <source src="https://assets.mixkit.co/sfx/preview/mixkit-unlock-game-notification-253.mp3" type="audio/mpeg">
+        <!-- <source src="https://assets.mixkit.co/sfx/preview/mixkit-unlock-game-notification-253.mp3" type="audio/mpeg"> -->
     </audio>
 
     <script src="script.js" defer></script>
+     
 </body>
 
 </html>

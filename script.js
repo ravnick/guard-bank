@@ -128,20 +128,30 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 3000);
     }
 
-    function speakWelcomeMessage(username, gender) {
-        // Use the browser's speech synthesis API
-        if ('speechSynthesis' in window) {
-            const greeting = gender === 'male' ? 'Mr.' : 'Miss';
-            const message = `  Welcome, ${greeting} ${username}`;
+function speakWelcomeMessage(username, gender) {
+    if ('speechSynthesis' in window) {
+        const greeting = gender === 'male' ? 'Mr.' : 'Miss';
+        const message = `Welcome, ${greeting} ${username}`;
 
-            const speech = new SpeechSynthesisUtterance(message);
-            speech.volume = 1;
-            speech.rate = 1;
-            speech.pitch = 1;
+        const speech = new SpeechSynthesisUtterance(message);
+        
+        // Proper settings
+        speech.volume = 1;    // 0 to 1
+        speech.rate = 1;   // thoda slow for clarity
+        speech.pitch = 0.5;     // natural pitch
 
-            window.speechSynthesis.speak(speech);
+        // Check for Indian English voice
+        const voices = window.speechSynthesis.getVoices();
+        const indianVoice = voices.find(v => 
+            v.lang.includes("en-IN") || v.name.toLowerCase().includes("india")
+        );
+        if (indianVoice) {
+            speech.voice = indianVoice;
         }
+
+        window.speechSynthesis.speak(speech);
     }
+}
 
     function handleSignup(e) {
         e.preventDefault();
