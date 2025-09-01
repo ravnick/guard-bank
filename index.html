@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Money Guard - Personal Finance Tracker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Splash Screen -->
+    <div id="splashScreen" class="splash-screen">
+        <div class="splash-logo">
+            <i class="fas fa-money-bill-wave"></i>
+        </div>
+        <h1>Money Guard</h1>
+        <p>Your Personal Expense & Income Tracker</p>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <i class="fas fa-money-bill-wave"></i> Money Guard
+        </div>
+        <div class="user-section">
+            <button class="theme-toggle" id="themeToggle">☀️</button>
+            <div class="avatar" id="avatar">U</div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Login Screen -->
+        <div id="loginScreen" class="screen">
+            <div class="form-container">
+                <h2>Login</h2>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginUsername">Username</label>
+                        <input type="text" id="loginUsername" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" required>
+                    </div>
+                    <button type="submit">Login</button>
+                </form>
+                <div class="link" id="forgotPasswordLink">Forgot Password?</div>
+                <div class="link" id="goToSignup">Don't have an account? Sign up</div>
+            </div>
+        </div>
+
+        <!-- Signup Screen -->
+        <div id="signupScreen" class="screen">
+            <div class="form-container">
+                <h2>Create Account</h2>
+                <form id="signupForm">
+                    <div class="form-group">
+                        <label for="signupUsername">Username</label>
+                        <input type="text" id="signupUsername" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupGender">Gender</label>
+                        <select id="signupGender" required>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupPassword">Password</label>
+                        <input type="password" id="signupPassword" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="securityQuestion">Security Question</label>
+                        <select id="securityQuestion" required>
+                            <option value="favoriteFruit">What is your favorite fruit?</option>
+                            <option value="favoriteColor">What is your favorite color?</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="securityAnswer">Answer</label>
+                        <input type="text" id="securityAnswer" required>
+                    </div>
+                    <button type="submit">Sign Up</button>
+                </form>
+                <div class="link" id="goToLogin">Already have an account? Login</div>
+            </div>
+        </div>
+
+        <!-- Forgot Password Screen -->
+        <div id="forgotPasswordScreen" class="screen">
+            <div class="form-container">
+                <h2>Reset Password</h2>
+                <form id="forgotPasswordForm">
+                    <div class="form-group">
+                        <label for="resetUsername">Username</label>
+                        <input type="text" id="resetUsername" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="securityQuestionReset">Security Question</label>
+                        <select id="securityQuestionReset" required>
+                            <option value="favoriteFruit">What is your favorite fruit?</option>
+                            <option value="favoriteColor">What is your favorite color?</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="securityAnswerReset">Answer</label>
+                        <input type="text" id="securityAnswerReset" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newPassword">New Password</label>
+                        <input type="password" id="newPassword" required>
+                    </div>
+                    <button type="submit">Reset Password</button>
+                </form>
+                <div class="link" id="backToLogin">Back to Login</div>
+            </div>
+        </div>
+
+        <!-- Dashboard Screen -->
+        <div id="dashboardScreen" class="screen">
+            <h2>Welcome, <span id="welcomeUsername">User</span></h2>
+            <div class="dashboard-buttons">
+                <div class="dashboard-btn" id="createRecordBtn">
+                    <i class="fas fa-plus-circle"></i>
+                    <h3>Create Record</h3>
+                    <p>Add new income or expense</p>
+                </div>
+                <div class="dashboard-btn" id="checkBalanceBtn">
+                    <i class="fas fa-wallet"></i>
+                    <h3>Check Bank Balance</h3>
+                    <p>View your current balance</p>
+                </div>
+                <div class="dashboard-btn" id="monthlySummaryBtn">
+                    <i class="fas fa-chart-pie"></i>
+                    <h3>Monthly Summary</h3>
+                    <p>See your monthly financial summary</p>
+                </div>
+                <div class="dashboard-btn" id="allRecordsBtn">
+                    <i class="fas fa-list"></i>
+                    <h3>All Records</h3>
+                    <p>View all transactions</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Create Record Screen -->
+        <div id="createRecordScreen" class="screen">
+            <button class="back-btn" id="backToDashboard">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <h2>Create New Record</h2>
+            <div class="record-options">
+                <button class="btn-success" id="receiveMoneyBtn">Receive Money (Income)</button>
+                <button class="btn-danger" id="sendMoneyBtn">Send Money (Expense)</button>
+            </div>
+
+            <!-- Income Form -->
+            <div class="form-container" id="incomeForm" style="display: none;">
+                <h3>Receive Money</h3>
+                <form id="incomeFormData">
+                    <div class="form-group">
+                        <label for="incomeDate">Date</label>
+                        <input type="date" id="incomeDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="incomeAmount">Amount Received (₹)</label>
+                        <input type="number" id="incomeAmount" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="incomeSource">From Whom</label>
+                        <input type="text" id="incomeSource" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="incomeReason">Reason</label>
+                        <textarea id="incomeReason" rows="3"></textarea>
+                    </div>
+                    <button type="submit">Add Income</button>
+                </form>
+            </div>
+
+            <!-- Expense Form -->
+            <div class="form-container" id="expenseForm" style="display: none;">
+                <h3>Send Money</h3>
+                <form id="expenseFormData">
+                    <div class="form-group">
+                        <label for="expenseDate">Date</label>
+                        <input type="date" id="expenseDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="expenseAmount">Amount Sent (₹)</label>
+                        <input type="number" id="expenseAmount" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="expenseRecipient">To Whom</label>
+                        <input type="text" id="expenseRecipient" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="expenseReason">Reason</label>
+                        <textarea id="expenseReason" rows="3"></textarea>
+                    </div>
+                    <button type="submit">Add Expense</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Bank Balance Screen -->
+        <div id="bankBalanceScreen" class="screen">
+            <button class="back-btn" id="backToDashboardFromBalance">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <h2>Bank Balance</h2>
+            <div class="form-container" id="balancePasswordForm">
+                <h3>Enter Password to View Balance</h3>
+                <form id="balancePasswordFormData">
+                    <div class="form-group">
+                        <label for="balancePassword">Password</label>
+                        <input type="password" id="balancePassword" required>
+                    </div>
+                    <button type="submit">View Balance</button>
+                </form>
+            </div>
+            <div class="balance-display" id="balanceDisplay" style="display: none;">
+                Your current balance: <span id="currentBalance">₹0</span>
+            </div>
+        </div>
+
+        <!-- Monthly Summary Screen -->
+        <div id="monthlySummaryScreen" class="screen">
+            <button class="back-btn" id="backToDashboardFromSummary">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <h2>Monthly Summary</h2>
+            <div class="summary-cards">
+                <div class="summary-card">
+                    <h3>Total Income</h3>
+                    <div class="amount" id="totalIncome">₹0</div>
+                </div>
+                <div class="summary-card">
+                    <h3>Total Expense</h3>
+                    <div class="amount" id="totalExpense">₹0</div>
+                </div>
+                <div class="summary-card">
+                    <h3>Closing Balance</h3>
+                    <div class="amount" id="closingBalance">₹0</div>
+                </div>
+            </div>
+            <h3 style="margin-top: 30px;">Recent Transactions</h3>
+            <div class="records-list" id="monthlyRecords">
+                <!-- Records will be displayed here -->
+            </div>
+        </div>
+
+        <!-- All Records Screen -->
+        <div id="allRecordsScreen" class="screen">
+            <button class="back-btn" id="backToDashboardFromRecords">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <h2>All Transactions</h2>
+
+            <div class="filter-section">
+                <input type="text" id="searchRecords" placeholder="Search by name or note...">
+                <select id="filterType">
+                    <option value="all">All Types</option>
+                    <option value="income">Income</option>
+                    <option value="expense">Expense</option>
+                </select>
+                <input type="date" id="filterDate">
+                <button class="btn-secondary" id="applyFilters">Apply Filters</button>
+            </div>
+
+            <div class="table-responsive">
+                <table class="transaction-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Type</th>
+                            <th>Amount</th>
+                            <th>Balance</th>
+                            <th>Note</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recordsTableBody">
+                        <!-- Records will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Modal -->
+    <div class="modal" id="profileModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Profile</h2>
+                <span class="close-modal" id="closeProfileModal">&times;</span>
+            </div>
+            <div class="profile-info" id="profileInfo">
+                <!-- Profile info will be displayed here -->
+            </div>
+            <button class="btn-secondary" id="editProfileBtn">Edit Your Details</button>
+            <button class="btn-danger" id="deleteAccountBtn" style="margin-top: 10px;">Delete Account</button>
+        </div>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div class="modal" id="editProfileModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Profile</h2>
+                <span class="close-modal" id="closeEditProfileModal">&times;</span>
+            </div>
+            <form id="editProfileForm">
+                <div class="form-group">
+                    <label for="editUsername">Username</label>
+                    <input type="text" id="editUsername" required>
+                </div>
+                <div class="form-group">
+                    <label for="editGender">Gender</label>
+                    <select id="editGender" required>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="editPassword">New Password</label>
+                    <input type="password" id="editPassword">
+                </div>
+                <div class="form-group">
+                    <label for="editSecurityQuestion">Security Question</label>
+                    <select id="editSecurityQuestion" required>
+                        <option value="favoriteFruit">What is your favorite fruit?</option>
+                        <option value="favoriteColor">What is your favorite color?</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="editSecurityAnswer">Answer</label>
+                    <input type="text" id="editSecurityAnswer" required>
+                </div>
+                <button type="submit">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Account Modal -->
+    <div class="modal" id="deleteAccountModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Delete Account</h2>
+                <span class="close-modal" id="closeDeleteAccountModal">&times;</span>
+            </div>
+            <p>Are you sure you want to delete your account? This action cannot be undone and all your data will be
+                lost.</p>
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                <button class="btn-danger" id="confirmDeleteAccount">Yes, Delete</button>
+                <button class="btn-secondary" id="cancelDeleteAccount">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Alert -->
+    <div class="alert" id="customAlert"></div>
+
+    <!-- Audio Elements -->
+    <audio id="backgroundSound" loop>
+        <source src="https://assets.mixkit.co/music/preview/mixkit-tech-house-vibes-130.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="welcomeSound">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-unlock-game-notification-253.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js" defer></script>
+</body>
+
+</html>
