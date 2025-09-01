@@ -138,7 +138,7 @@ function speakWelcomeMessage(username, gender) {
         // Proper settings
         speech.volume = 1;    // 0 to 1
         speech.rate = 1;   // thoda slow for clarity
-        speech.pitch = 0.5;     // natural pitch
+        speech.pitch = 1;     // natural pitch
 
         // Check for Indian English voice
         const voices = window.speechSynthesis.getVoices();
